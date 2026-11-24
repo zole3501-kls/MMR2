@@ -1,0 +1,36 @@
+name: 4. Sync Flu (10:00 น.)
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # 10:00 AM Thailand Time (UTC 03:00)
+  workflow_dispatch:
+
+concurrency:
+  group: sync-flu
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Run Flu Sync Script (NHSO medata)
+        env:
+          TZ: Asia/Bangkok
+        run: |
+          uv run sync_nhso_flu.py

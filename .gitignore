@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# vpn_connect.py เขียนไฟล์ config ชั่วคราวลง working directory
+vpn_config.ovpn
+*.ovpn
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# log จากการทดสอบ
+*.log

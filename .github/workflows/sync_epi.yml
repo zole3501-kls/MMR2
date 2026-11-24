@@ -1,0 +1,45 @@
+name: 3. Sync EPI (09:30 น.)
+
+on:
+  schedule:
+    - cron: '30 2 * * *' # 09:30 AM Thailand Time (UTC 02:30)
+  workflow_dispatch:
+
+concurrency:
+  group: sync-epi
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Install OpenVPN
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openvpn
+
+      - name: Connect to Thailand VPN
+        run: |
+          python vpn_connect.py
+
+      - name: Run EPI Sync Script
+        env:
+          TZ: Asia/Bangkok
+        run: |
+          uv run sync_hdc_epi.py
