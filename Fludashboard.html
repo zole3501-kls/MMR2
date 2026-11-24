@@ -253,17 +253,32 @@
             padding: 14px 18px; border-radius: 12px; font-size: 13.5px; line-height: 1.6;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 991px) {
             .district-grid { grid-template-columns: repeat(3, 1fr); }
             .charts-container { grid-template-columns: 1fr; }
         }
-        @media (max-width: 640px) {
-            body { padding: 12px; }
-            .header { padding: 20px; }
-            .header h1 { font-size: 20px; }
-            .district-grid { grid-template-columns: repeat(2, 1fr); }
-            .scope-bar { padding: 16px; }
-            .kpi-container { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 18px 16px; flex-direction: column; align-items: stretch; gap: 12px; }
+            .header h1 { font-size: 19px; line-height: 1.35; }
+            .header p { font-size: 13px; }
+            .btn-download { width: 100%; justify-content: center; padding: 12px; }
+            .scope-bar { padding: 16px 14px; gap: 12px; }
+            .scope-group { width: 100%; }
+            .scope-pills { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .scope-btn { justify-content: center; font-size: 13px; padding: 8px 10px; }
+            .kpi-container { grid-template-columns: 1fr; gap: 12px; }
+            .kpi-card { padding: 18px 16px; }
+            .kpi-value { font-size: 32px; }
+            .grid-container { padding: 16px; }
+            .district-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .district-card { padding: 8px 10px; height: 46px; }
+            .dc-name { font-size: 13px; }
+            .dc-pct { font-size: 11px; padding: 2px 6px; }
+            .charts-container { grid-template-columns: 1fr; gap: 16px; }
+            .chart-card { padding: 16px 14px; height: auto; min-height: 360px; }
+            .canvas-container { height: 280px; }
+            .table-container { border-radius: 14px; }
         }
     </style>
 </head>
