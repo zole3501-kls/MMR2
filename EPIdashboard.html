@@ -542,44 +542,141 @@
             * { transition: none !important; }
         }
 
-        @media(max-width: 991px) {
+        
+        /* ===== ยกระดับการแสดงผลบนมือถือ (Mobile Responsive Perfection) ===== */
+        @media (max-width: 991px) {
             .district-grid { grid-template-columns: repeat(3, 1fr) !important; }
             .agency-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            .charts-container { grid-template-columns: 1fr !important; }
         }
-        @media(max-width: 768px) {
-            body { padding: 10px; }
-            .header { padding: 15px; flex-direction: column; align-items: flex-start; gap: 10px; }
-            .header-actions { width: 100%; }
-            .btn-download { width: 100%; text-align: center; padding: 12px; }
-            .scope-bar { padding: 18px 15px 14px; gap: 12px; }
-            .scope-group { width: 100%; }
-            .scope-group + .scope-group { border-left: none; padding-left: 0; border-top: 1px dashed #e2e8f0; padding-top: 12px; }
-            .header-mark { display: none; }
-            .header-icon { width: 36px; height: 36px; font-size: 18px; border-radius: 11px; }
-            .header h1 { font-size: 19px; gap: 9px; }
-            .scope-btn.ind { padding: 6px 10px; font-size: 12px; }
-            .scope-btn.rscore { padding: 8px 14px; font-size: 12.5px; }
-            .rscore-note { padding: 14px 16px; font-size: 12.5px; }
-            .rscore-formula { font-size: 12.5px; gap: 8px; padding: 10px 12px; }
-            .rscore-formula .fx { font-size: 14px; }
-            .rscore-breakdown { padding: 16px; }
-            .bd-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
-            .nodata-banner { padding: 16px; font-size: 13.5px; }
-            .epi-note { padding: 12px 16px; font-size: 12.5px; }
-            .filter-section { padding: 15px; }
-            .filter-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .filter-btn { padding: 10px; justify-content: space-between; font-size: 12px; }
-            .kpi-container { grid-template-columns: 1fr; gap: 12px; }
-            .charts-container { grid-template-columns: minmax(0, 1fr); }
-            .chart-card { height: 400px; }
-            .trend-card { padding: 16px; }
-            .trend-canvas { height: 240px; }
-            .insight-card { padding: 20px; }
-            .insight-card h3 { font-size: 18px; }
-            .district-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            .agency-grid { grid-template-columns: 1fr !important; gap: 8px; }
-            .grid-container { padding: 16px; }
+        @media (max-width: 768px) {
+            body { padding: 10px !important; }
+            .header { padding: 18px 16px !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
+            .header h1 { font-size: 19px !important; line-height: 1.35 !important; }
+            .header p { font-size: 13px !important; }
+            .btn-download { width: 100% !important; justify-content: center !important; padding: 12px !important; font-size: 14px !important; }
+            
+            /* Scope Bar (เมนูชนิดวัคซีน / ปี / ไตรมาส) */
+            .scope-bar { padding: 16px 14px 12px !important; border-radius: 16px !important; gap: 12px !important; margin-bottom: 16px !important; }
+            .scope-group { width: 100% !important; gap: 8px !important; }
+            .scope-group + .scope-group { border-left: none !important; padding-left: 0 !important; border-top: 1px dashed var(--t-line, #e2e8f0) !important; padding-top: 10px !important; margin-top: 2px !important; }
+            .scope-label { font-size: 11.5px !important; padding: 4px 10px !important; }
+            .scope-pills { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; width: 100% !important; }
+            .scope-btn { padding: 6px 14px !important; font-size: 12.5px !important; border-radius: 999px !important; }
+            /* สวิตช์ 4 ชนิดวัคซีน: จัดเป็นตาราง 2x2 เต็มความกว้าง สวยงามและจิ้มง่าย */
+            .scope-group.nav-group .scope-pills { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+            .scope-group.nav-group .scope-btn { justify-content: center !important; padding: 7px 10px !important; }
+
+            /* Filter Buttons: 6 ปุ่ม จัดเป็น 2 แถว แถวละ 3 ปุ่ม พอดีเป๊ะ */
+            .filter-section { padding: 14px 12px !important; border-radius: 16px !important; margin-bottom: 16px !important; }
+            .filter-section-title { font-size: 13px !important; margin-bottom: 10px !important; }
+            .filter-buttons { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+            .filter-btn { padding: 7px 4px !important; border-radius: 10px !important; font-size: 11.5px !important; justify-content: center !important; gap: 4px !important; }
+            .filter-count { font-size: 10px !important; padding: 1px 5px !important; }
+
+            /* การ์ด KPI: ดีไซน์ใหม่ Hero Card ด้านบน + 2 คอลัมน์ด้านล่าง */
+            .kpi-container {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+                margin-bottom: 18px !important;
+            }
+            .kpi-card {
+                padding: 16px 12px !important;
+                border-radius: 14px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+                min-height: 110px !important;
+            }
+            .kpi-icon { font-size: 22px !important; margin-bottom: 4px !important; }
+            .kpi-title { font-size: 12px !important; font-weight: 600 !important; line-height: 1.3 !important; text-align: center !important; }
+            .kpi-value { font-size: 26px !important; font-weight: 700 !important; margin-top: 4px !important; line-height: 1.15 !important; }
+            .kpi-sub { font-size: 11px !important; margin-top: 4px !important; text-align: center !important; }
+            
+            /* ร้อยละความครอบคลุม: เป็น Hero Card เด่นเต็มความกว้าง 2 คอลัมน์ */
+            .kpi-card.bg-yellow, .kpi-card.kpi-hero {
+                grid-column: 1 / -1 !important;
+                order: -1 !important;
+                padding: 16px 18px !important;
+                min-height: auto !important;
+                border-width: 1.5px !important;
+            }
+            .kpi-card.bg-yellow .kpi-value, .kpi-card.kpi-hero .kpi-value {
+                font-size: 32px !important;
+            }
+
+            /* District Grid: จัด 2 คอลัมน์ ไม่มีการตัดทอนชื่ออำเภอ */
+            .grid-container { padding: 14px 12px !important; border-radius: 16px !important; margin-bottom: 16px !important; }
+            .grid-title { font-size: 13.5px !important; margin-bottom: 12px !important; }
+            .district-grid-overview { margin-bottom: 10px !important; }
+            .district-grid-overview .district-card {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 48px !important;
+                border-radius: 12px !important;
+                padding: 10px 14px !important;
+                justify-content: space-between !important;
+            }
+            .district-grid-overview .district-card .dc-name { font-size: 14px !important; font-weight: 700 !important; }
+            .district-grid-overview .district-card .dc-pct { font-size: 13px !important; padding: 4px 10px !important; }
+            .district-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+            .district-card {
+                padding: 8px 10px !important;
+                height: 48px !important;
+                border-radius: 12px !important;
+                border-width: 1.5px !important;
+                background: #ffffff !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+            }
+            .district-card .dc-name {
+                font-size: 13px !important;
+                font-weight: 600 !important;
+                color: #1e293b !important;
+                letter-spacing: -0.2px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            .district-card .dc-pct {
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                padding: 3px 6px !important;
+                border-radius: 6px !important;
+                flex-shrink: 0 !important;
+                min-width: 44px !important;
+                text-align: center !important;
+            }
+            .district-card.active { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; }
+            .district-card.active .dc-name { color: #ffffff !important; font-weight: 700 !important; }
+
+            /* Agency Grid (สังกัด) */
+            .agency-grid { grid-template-columns: 1fr !important; gap: 6px !important; margin-bottom: 12px !important; }
+            .agency-card { padding: 10px 14px !important; border-radius: 10px !important; font-size: 13px !important; }
+
+            /* กราฟและ Insight Cards */
+            .charts-container { grid-template-columns: 1fr !important; gap: 14px !important; margin-bottom: 16px !important; }
+            .chart-card { padding: 16px 14px !important; border-radius: 14px !important; height: auto !important; min-height: 350px !important; }
+            .chart-card h3 { font-size: 14.5px !important; margin-bottom: 12px !important; }
+            .canvas-container { height: 280px !important; }
+            .insights-container { grid-template-columns: 1fr !important; gap: 12px !important; margin-bottom: 16px !important; }
+            .insight-card { padding: 16px !important; border-radius: 14px !important; }
+            .insight-card h3 { font-size: 16px !important; padding-bottom: 8px !important; margin-bottom: 12px !important; }
+            .pill { padding: 6px 12px !important; font-size: 12.5px !important; }
+
+            /* ตารางข้อมูล */
+            .table-container { border-radius: 14px !important; margin-bottom: 20px !important; }
         }
+        @media (max-width: 420px) {
+            .filter-buttons { grid-template-columns: repeat(2, 1fr) !important; }
+            .district-grid { gap: 6px !important; }
+            .district-card { padding: 6px 8px !important; }
+            .district-card .dc-name { font-size: 12px !important; }
+            .district-card .dc-pct { font-size: 10.5px !important; min-width: 40px !important; padding: 2px 4px !important; }
+        }
+
     </style></head>
 <body>
 
