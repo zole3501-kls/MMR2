@@ -6,11 +6,11 @@
 · หน้าไข้หวัดใหญ่ดึงจาก **แดชบอร์ดสาธารณะ สปสช. (medata) อัตโนมัติทุกวัน** ในตารางเวลาเดียวกัน ·
 ทั้งสี่หน้าเชื่อมกันด้วยเมนู **"🗂️ ชนิดวัคซีน"** บนโดเมนเดียวกัน
 
-- แดชบอร์ด MMR2: <https://zole3500-ana.github.io/MMR2/dashboard.html>
-- แดชบอร์ด PCV: <https://zole3500-ana.github.io/MMR2/PCVdashboard.html>
-- แดชบอร์ด EPI: <https://zole3500-ana.github.io/MMR2/EPIdashboard.html>
-- แดชบอร์ดไข้หวัดใหญ่: <https://zole3500-ana.github.io/MMR2/Fludashboard.html>
-- Repo: <https://github.com/zole3500-ANA/MMR2>
+- แดชบอร์ด MMR2: <https://zole3501-kls.github.io/MMR2/dashboard.html>
+- แดชบอร์ด PCV: <https://zole3501-kls.github.io/MMR2/PCVdashboard.html>
+- แดชบอร์ด EPI: <https://zole3501-kls.github.io/MMR2/EPIdashboard.html>
+- แดชบอร์ดไข้หวัดใหญ่: <https://zole3501-kls.github.io/MMR2/Fludashboard.html>
+- Repo: <https://github.com/zole3501-kls/MMR2>
 
 ---
 

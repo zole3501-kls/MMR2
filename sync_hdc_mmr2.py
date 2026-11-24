@@ -392,7 +392,7 @@ def run_git(years):
         subprocess.run([GIT_EXE, 'push', 'origin', 'main'], cwd=GIT_DIR, check=True,
                        capture_output=True, text=True)
         print("🎉 ดันข้อมูลขึ้น GitHub Pages เรียบร้อยแล้ว!")
-        print("🔗 https://zole3500-ana.github.io/MMR2/dashboard.html")
+        print("🔗 https://zole3501-kls.github.io/MMR2/dashboard.html")
         return True
     except subprocess.CalledProcessError as e:
         print(f"❌ git {e.cmd[1]} ล้มเหลว (exit {e.returncode})")
