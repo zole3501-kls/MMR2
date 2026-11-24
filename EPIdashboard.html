@@ -543,138 +543,428 @@
         }
 
         
-        /* ===== ยกระดับการแสดงผลบนมือถือ (Mobile Responsive Perfection) ===== */
+        
+        /* ===== ยกระดับการออกแบบบนมือถือระดับพรีเมียม (Premium App-Like Mobile UI) ===== */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+        .dashboard-container {
+            width: 100% !important;
+            max-width: 1280px !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+        }
+
         @media (max-width: 991px) {
             .district-grid { grid-template-columns: repeat(3, 1fr) !important; }
             .agency-grid { grid-template-columns: repeat(3, 1fr) !important; }
             .charts-container { grid-template-columns: 1fr !important; }
         }
+
         @media (max-width: 768px) {
-            body { padding: 10px !important; }
-            .header { padding: 18px 16px !important; flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
-            .header h1 { font-size: 19px !important; line-height: 1.35 !important; }
-            .header p { font-size: 13px !important; }
-            .btn-download { width: 100% !important; justify-content: center !important; padding: 12px !important; font-size: 14px !important; }
-            
-            /* Scope Bar (เมนูชนิดวัคซีน / ปี / ไตรมาส) */
-            .scope-bar { padding: 16px 14px 12px !important; border-radius: 16px !important; gap: 12px !important; margin-bottom: 16px !important; }
-            .scope-group { width: 100% !important; gap: 8px !important; }
-            .scope-group + .scope-group { border-left: none !important; padding-left: 0 !important; border-top: 1px dashed var(--t-line, #e2e8f0) !important; padding-top: 10px !important; margin-top: 2px !important; }
-            .scope-label { font-size: 11.5px !important; padding: 4px 10px !important; }
-            .scope-pills { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; width: 100% !important; }
-            .scope-btn { padding: 6px 14px !important; font-size: 12.5px !important; border-radius: 999px !important; }
-            /* สวิตช์ 4 ชนิดวัคซีน: จัดเป็นตาราง 2x2 เต็มความกว้าง สวยงามและจิ้มง่าย */
-            .scope-group.nav-group .scope-pills { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
-            .scope-group.nav-group .scope-btn { justify-content: center !important; padding: 7px 10px !important; }
+            body { padding: 8px !important; }
+            .dashboard-container { padding: 0 !important; }
 
-            /* Filter Buttons: 6 ปุ่ม จัดเป็น 2 แถว แถวละ 3 ปุ่ม พอดีเป๊ะ */
-            .filter-section { padding: 14px 12px !important; border-radius: 16px !important; margin-bottom: 16px !important; }
-            .filter-section-title { font-size: 13px !important; margin-bottom: 10px !important; }
-            .filter-buttons { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
-            .filter-btn { padding: 7px 4px !important; border-radius: 10px !important; font-size: 11.5px !important; justify-content: center !important; gap: 4px !important; }
-            .filter-count { font-size: 10px !important; padding: 1px 5px !important; }
+            /* 1. Header สไตล์แอปพลิเคชัน */
+            .header {
+                padding: 16px 14px !important;
+                border-radius: 18px !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 12px !important;
+                margin-bottom: 12px !important;
+            }
+            .header h1 {
+                font-size: 18px !important;
+                line-height: 1.35 !important;
+                gap: 8px !important;
+            }
+            .header-icon {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: 20px !important;
+                border-radius: 12px !important;
+            }
+            .header p { font-size: 12px !important; opacity: 0.9 !important; }
+            .btn-download {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 10px 14px !important;
+                font-size: 13.5px !important;
+                border-radius: 12px !important;
+            }
 
-            /* การ์ด KPI: ดีไซน์ใหม่ Hero Card ด้านบน + 2 คอลัมน์ด้านล่าง */
+            /* 2. Scope Bar (เมนูชนิดวัคซีน + ปี + ไตรมาส) */
+            .scope-bar {
+                padding: 14px 12px !important;
+                border-radius: 18px !important;
+                gap: 10px !important;
+                margin-bottom: 14px !important;
+                background: #ffffff !important;
+                border: 1.5px solid #dcdff2 !important;
+                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+            }
+            .scope-group { width: 100% !important; gap: 6px !important; }
+            .scope-group + .scope-group {
+                border-left: none !important;
+                padding-left: 0 !important;
+                border-top: 1px dashed #cbd5e1 !important;
+                padding-top: 10px !important;
+                margin-top: 2px !important;
+            }
+            .scope-label { font-size: 11.5px !important; padding: 3px 8px !important; font-weight: 700 !important; }
+            .scope-group.nav-group .scope-pills {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 6px !important;
+                width: 100% !important;
+            }
+            .scope-group.nav-group .scope-btn {
+                justify-content: center !important;
+                padding: 8px 10px !important;
+                font-size: 12.5px !important;
+            }
+            .scope-pills {
+                display: flex !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                gap: 6px !important;
+                width: 100% !important;
+                padding-bottom: 3px !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+            }
+            .scope-pills::-webkit-scrollbar { display: none !important; }
+            .scope-btn {
+                flex-shrink: 0 !important;
+                padding: 6px 14px !important;
+                font-size: 12px !important;
+                border-radius: 999px !important;
+                white-space: nowrap !important;
+            }
+
+            /* 3. ===== การ์ด KPI: Executive Hero Summary ===== */
             .kpi-container {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 10px !important;
-                margin-bottom: 18px !important;
+                margin-bottom: 14px !important;
             }
-            .kpi-card {
-                padding: 16px 12px !important;
-                border-radius: 14px !important;
+            /* Hero Card: ร้อยละความครอบคลุม (เด่นสะดุดตา เต็มความกว้าง 2 คอลัมน์) */
+            .kpi-card.bg-yellow, .kpi-card.kpi-hero {
+                grid-column: 1 / -1 !important;
+                order: -1 !important;
+                padding: 18px 16px !important;
+                border-radius: 20px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
-                min-height: 110px !important;
+                background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%) !important;
+                border: 2px solid #f59e0b !important;
+                box-shadow: 0 10px 25px -8px rgba(245, 158, 11, 0.35) !important;
             }
-            .kpi-icon { font-size: 22px !important; margin-bottom: 4px !important; }
-            .kpi-title { font-size: 12px !important; font-weight: 600 !important; line-height: 1.3 !important; text-align: center !important; }
-            .kpi-value { font-size: 26px !important; font-weight: 700 !important; margin-top: 4px !important; line-height: 1.15 !important; }
-            .kpi-sub { font-size: 11px !important; margin-top: 4px !important; text-align: center !important; }
-            
-            /* ร้อยละความครอบคลุม: เป็น Hero Card เด่นเต็มความกว้าง 2 คอลัมน์ */
-            .kpi-card.bg-yellow, .kpi-card.kpi-hero {
-                grid-column: 1 / -1 !important;
-                order: -1 !important;
-                padding: 16px 18px !important;
-                min-height: auto !important;
-                border-width: 1.5px !important;
+            .kpi-card.bg-yellow .kpi-icon, .kpi-card.kpi-hero .kpi-icon {
+                font-size: 24px !important;
+                margin-bottom: 2px !important;
+            }
+            .kpi-card.bg-yellow .kpi-title, .kpi-card.kpi-hero .kpi-title {
+                font-size: 13.5px !important;
+                font-weight: 700 !important;
+                color: #92400e !important;
+                letter-spacing: 0.2px !important;
             }
             .kpi-card.bg-yellow .kpi-value, .kpi-card.kpi-hero .kpi-value {
-                font-size: 32px !important;
+                font-size: 38px !important;
+                font-weight: 800 !important;
+                color: #78350f !important;
+                line-height: 1.1 !important;
+                margin: 4px 0 !important;
+            }
+            .kpi-card.bg-yellow .kpi-sub, .kpi-card.kpi-hero .kpi-sub {
+                font-size: 11.5px !important;
+                color: #b45309 !important;
+                font-weight: 600 !important;
             }
 
-            /* District Grid: จัด 2 คอลัมน์ ไม่มีการตัดทอนชื่ออำเภอ */
-            .grid-container { padding: 14px 12px !important; border-radius: 16px !important; margin-bottom: 16px !important; }
-            .grid-title { font-size: 13.5px !important; margin-bottom: 12px !important; }
-            .district-grid-overview { margin-bottom: 10px !important; }
-            .district-grid-overview .district-card {
-                width: 100% !important;
-                max-width: 100% !important;
-                height: 48px !important;
-                border-radius: 12px !important;
-                padding: 10px 14px !important;
-                justify-content: space-between !important;
-            }
-            .district-grid-overview .district-card .dc-name { font-size: 14px !important; font-weight: 700 !important; }
-            .district-grid-overview .district-card .dc-pct { font-size: 13px !important; padding: 4px 10px !important; }
-            .district-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-            .district-card {
-                padding: 8px 10px !important;
-                height: 48px !important;
-                border-radius: 12px !important;
+            /* Companion Cards: เป้าหมาย & ฉีดแล้ว (2 คอลัมน์ สีสันชัดเจน) */
+            .kpi-card.bg-blue, .kpi-card.bg-green, .kpi-card.bg-amber {
+                padding: 14px 12px !important;
+                border-radius: 16px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 98px !important;
                 border-width: 1.5px !important;
-                background: #ffffff !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
             }
-            .district-card .dc-name {
-                font-size: 13px !important;
+            .kpi-card.bg-blue {
+                background: linear-gradient(135deg, #f0f7ff 0%, #dbeafe 100%) !important;
+                border-color: #93c5fd !important;
+                box-shadow: 0 6px 16px -6px rgba(59, 130, 246, 0.25) !important;
+            }
+            .kpi-card.bg-blue .kpi-title { color: #1e40af !important; }
+            .kpi-card.bg-blue .kpi-value { color: #1e3a8a !important; }
+
+            .kpi-card.bg-green {
+                background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%) !important;
+                border-color: #86efac !important;
+                box-shadow: 0 6px 16px -6px rgba(16, 185, 129, 0.25) !important;
+            }
+            .kpi-card.bg-green .kpi-title { color: #065f46 !important; }
+            .kpi-card.bg-green .kpi-value { color: #064e3b !important; }
+
+            .kpi-card.bg-amber {
+                background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+                border-color: #fde68a !important;
+                box-shadow: 0 6px 16px -6px rgba(245, 158, 11, 0.25) !important;
+            }
+            .kpi-card.bg-amber .kpi-title { color: #92400e !important; }
+            .kpi-card.bg-amber .kpi-value { color: #78350f !important; }
+
+            .kpi-card .kpi-icon {
+                font-size: 22px !important;
+                margin-bottom: 2px !important;
+            }
+            .kpi-card .kpi-title {
+                font-size: 12px !important;
+                font-weight: 700 !important;
+                line-height: 1.25 !important;
+                text-align: center !important;
+            }
+            .kpi-card .kpi-value {
+                font-size: 24px !important;
+                font-weight: 800 !important;
+                margin-top: 3px !important;
+                line-height: 1.15 !important;
+            }
+
+            /* 4. ===== Section กรองพื้นที่ (สังกัด + 18 อำเภอ) ===== */
+            .grid-container {
+                padding: 16px 12px !important;
+                border-radius: 20px !important;
+                margin-bottom: 14px !important;
+                background: #ffffff !important;
+                border: 1.5px solid #cbd5e1 !important;
+                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+            }
+            .grid-title {
+                font-size: 13.5px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                margin-bottom: 10px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 6px !important;
+            }
+            .grid-title > span:last-child {
+                font-size: 11px !important;
+                flex-wrap: wrap !important;
+                gap: 4px !important;
+            }
+
+            /* สังกัดหน่วยบริการ: Segmented Switch 3 แท็บแนวนอน */
+            .agency-grid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 6px !important;
+                margin-bottom: 14px !important;
+            }
+            .agency-card {
+                padding: 8px 4px !important;
+                border-radius: 10px !important;
+                font-size: 12px !important;
                 font-weight: 600 !important;
-                color: #1e293b !important;
-                letter-spacing: -0.2px !important;
+                text-align: center !important;
+                justify-content: center !important;
+                min-height: 38px !important;
+                background: #f1f5f9 !important;
+                border: 1.5px solid #cbd5e1 !important;
+                color: #334155 !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
             }
-            .district-card .dc-pct {
-                font-size: 11px !important;
-                font-weight: 700 !important;
-                padding: 3px 6px !important;
-                border-radius: 6px !important;
-                flex-shrink: 0 !important;
-                min-width: 44px !important;
-                text-align: center !important;
+            .agency-card.active {
+                background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
+                border-color: transparent !important;
+                color: #ffffff !important;
+                box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3) !important;
             }
-            .district-card.active { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; }
-            .district-card.active .dc-name { color: #ffffff !important; font-weight: 700 !important; }
 
-            /* Agency Grid (สังกัด) */
-            .agency-grid { grid-template-columns: 1fr !important; gap: 6px !important; margin-bottom: 12px !important; }
-            .agency-card { padding: 10px 14px !important; border-radius: 10px !important; font-size: 13px !important; }
+            /* ===== District Cards: Redesigned Mobile Tiles ===== */
+            .district-grid-overview {
+                margin-bottom: 12px !important;
+                width: 100% !important;
+            }
+            /* การ์ดภาพรวมทั้งจังหวัด: Banner ใหญ่ พรีเมียม */
+            .district-grid-overview .district-card {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 56px !important;
+                border-radius: 16px !important;
+                padding: 10px 16px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%) !important;
+                border: 2px solid #94a3b8 !important;
+                box-shadow: 0 3px 8px rgba(15, 23, 42, 0.05) !important;
+                box-sizing: border-box !important;
+            }
+            .district-grid-overview .district-card .dc-name {
+                font-size: 14.5px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                flex-grow: 1 !important;
+                text-align: left !important;
+            }
+            .district-grid-overview .district-card .dc-pct {
+                font-size: 14px !important;
+                font-weight: 800 !important;
+                padding: 5px 12px !important;
+                border-radius: 8px !important;
+            }
+            .district-grid-overview .district-card.active {
+                background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
+                border-color: transparent !important;
+                box-shadow: 0 8px 20px -4px var(--t-glow, rgba(67, 56, 202, 0.5)) !important;
+            }
+            .district-grid-overview .district-card.active .dc-name {
+                color: #ffffff !important;
+            }
+            .district-grid-overview .district-card.active .dc-pct {
+                background: #f59e0b !important;
+                color: #1e1b4b !important;
+                border: none !important;
+            }
 
-            /* กราฟและ Insight Cards */
-            .charts-container { grid-template-columns: 1fr !important; gap: 14px !important; margin-bottom: 16px !important; }
-            .chart-card { padding: 16px 14px !important; border-radius: 14px !important; height: auto !important; min-height: 350px !important; }
-            .chart-card h3 { font-size: 14.5px !important; margin-bottom: 12px !important; }
-            .canvas-container { height: 280px !important; }
-            .insights-container { grid-template-columns: 1fr !important; gap: 12px !important; margin-bottom: 16px !important; }
-            .insight-card { padding: 16px !important; border-radius: 14px !important; }
-            .insight-card h3 { font-size: 16px !important; padding-bottom: 8px !important; margin-bottom: 12px !important; }
-            .pill { padding: 6px 12px !important; font-size: 12.5px !important; }
+            /* การ์ดราย 18 อำเภอ: ตาราง 2 คอลัมน์ แบบ App Stat Cards */
+            .district-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                margin-bottom: 6px !important;
+            }
+            .district-card {
+                height: 70px !important;
+                padding: 10px 12px !important;
+                border-radius: 14px !important;
+                border: 1.5px solid #cbd5e1 !important;
+                background: #ffffff !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                align-items: stretch !important;
+                box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+                box-sizing: border-box !important;
+                transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+            }
+            /* แถวบน: ชื่ออำเภอ ตัวหนา คมชัด 13.5px */
+            .district-card .dc-name {
+                font-size: 13.5px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
+                line-height: 1.2 !important;
+            }
+            /* แถวล่าง: ตัวเลขร้อยละพร้อม Badge ชัดเจน */
+            .district-card .dc-pct {
+                font-size: 12.5px !important;
+                font-weight: 800 !important;
+                padding: 3px 8px !important;
+                border-radius: 6px !important;
+                align-self: flex-end !important;
+                margin-top: auto !important;
+                line-height: 1.2 !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+            }
+            /* เมื่อการ์ดอำเภอถูกเลือก (Active State) */
+            .district-card.active {
+                background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
+                border-color: transparent !important;
+                box-shadow: 0 8px 18px -4px var(--t-glow, rgba(67, 56, 202, 0.45)) !important;
+                transform: scale(1.02) !important;
+            }
+            .district-card.active .dc-name {
+                color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+            .district-card.active .dc-pct {
+                background: rgba(255, 255, 255, 0.25) !important;
+                color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.35) !important;
+            }
 
-            /* ตารางข้อมูล */
-            .table-container { border-radius: 14px !important; margin-bottom: 20px !important; }
-        }
-        @media (max-width: 420px) {
-            .filter-buttons { grid-template-columns: repeat(2, 1fr) !important; }
-            .district-grid { gap: 6px !important; }
-            .district-card { padding: 6px 8px !important; }
-            .district-card .dc-name { font-size: 12px !important; }
-            .district-card .dc-pct { font-size: 10.5px !important; min-width: 40px !important; padding: 2px 4px !important; }
+            /* 5. Filter Buttons: แถบเลื่อนแนวนอน Modern App Pills */
+            .filter-section {
+                padding: 12px 10px !important;
+                border-radius: 16px !important;
+                margin-bottom: 14px !important;
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+            .filter-section-title { font-size: 12.5px !important; margin-bottom: 8px !important; font-weight: 700 !important; }
+            .filter-buttons {
+                display: flex !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                gap: 6px !important;
+                padding-bottom: 4px !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+            }
+            .filter-buttons::-webkit-scrollbar { display: none !important; }
+            .filter-btn {
+                flex-shrink: 0 !important;
+                padding: 6px 14px !important;
+                border-radius: 999px !important;
+                font-size: 12px !important;
+                white-space: nowrap !important;
+            }
+
+            /* 6. Charts & Insights */
+            .charts-container {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+                margin-bottom: 14px !important;
+            }
+            .chart-card {
+                padding: 14px 12px !important;
+                border-radius: 16px !important;
+                height: auto !important;
+                min-height: 320px !important;
+            }
+            .canvas-container { height: 260px !important; }
+            .insights-container {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+                margin-bottom: 14px !important;
+            }
+            .insight-card { padding: 14px !important; border-radius: 16px !important; }
+            .pill { padding: 5px 10px !important; font-size: 12px !important; }
+
+            /* 7. Table Container: ป้องกันการล้นจอเด็ดขาด */
+            .table-container {
+                border-radius: 16px !important;
+                margin-bottom: 20px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+            .table-wrapper {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
         }
 
     </style></head>
@@ -769,6 +1059,27 @@
         <p class="rscore-drag" id="rscoreDrag" hidden></p>
     </div>
 
+    <div class="kpi-container">
+        <div class="kpi-card bg-blue">
+            <div class="kpi-icon">🎯</div>
+            <div class="kpi-title" id="kpiTargetTitle">เป้าหมาย (คน)</div>
+            <div class="kpi-value" id="kpiTarget">0</div>
+            <div class="kpi-sub" id="kpiTargetSub">เป้าหมายของรายงานที่เข็มนี้สังกัด</div>
+        </div>
+        <div class="kpi-card bg-green">
+            <div class="kpi-icon">💉</div>
+            <div class="kpi-title" id="kpiCountTitle">ได้รับวัคซีน (คน)</div>
+            <div class="kpi-value" id="kpiCount">0</div>
+            <div class="kpi-sub" id="kpiCountSub">—</div>
+        </div>
+        <div class="kpi-card bg-yellow">
+            <div class="kpi-icon">📈</div>
+            <div class="kpi-title" id="kpiPercentTitle">ร้อยละความครอบคลุม (%)</div>
+            <div class="kpi-value" id="kpiPercent">0.00%</div>
+            <div class="kpi-sub" id="kpiPercentSub">เป้าหมาย HDC คือ 90%</div>
+        </div>
+    </div>
+
     <div class="grid-container">
         <div class="grid-title">🏢 กรองตามสังกัดหน่วยบริการ</div>
         <div class="agency-grid" id="agencyGrid">
@@ -810,27 +1121,6 @@
             <button class="filter-btn" data-filter="90-94">90–94% (ผลงานดี) <span class="filter-count" id="count-90-94">0</span></button>
             <button class="filter-btn" data-filter="85-89">85–89% (เฝ้าระวัง) <span class="filter-count" id="count-85-89">0</span></button>
             <button class="filter-btn" data-filter="<85">&lt; 85% (เร่งด่วน) <span class="filter-count" id="count-lt85">0</span></button>
-        </div>
-    </div>
-
-    <div class="kpi-container">
-        <div class="kpi-card bg-blue">
-            <div class="kpi-icon">🎯</div>
-            <div class="kpi-title" id="kpiTargetTitle">เป้าหมาย (คน)</div>
-            <div class="kpi-value" id="kpiTarget">0</div>
-            <div class="kpi-sub" id="kpiTargetSub">เป้าหมายของรายงานที่เข็มนี้สังกัด</div>
-        </div>
-        <div class="kpi-card bg-green">
-            <div class="kpi-icon">💉</div>
-            <div class="kpi-title" id="kpiCountTitle">ได้รับวัคซีน (คน)</div>
-            <div class="kpi-value" id="kpiCount">0</div>
-            <div class="kpi-sub" id="kpiCountSub">—</div>
-        </div>
-        <div class="kpi-card bg-yellow">
-            <div class="kpi-icon">📈</div>
-            <div class="kpi-title" id="kpiPercentTitle">ร้อยละความครอบคลุม (%)</div>
-            <div class="kpi-value" id="kpiPercent">0.00%</div>
-            <div class="kpi-sub" id="kpiPercentSub">เป้าหมาย HDC คือ 90%</div>
         </div>
     </div>
 
