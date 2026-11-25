@@ -213,7 +213,7 @@ def parse_asof(asof_raw):
     d, mo, y, hm = int(m.group(1)), int(m.group(2)), int(m.group(3)), m.group(4)
     if not (1 <= mo <= 12 and 1 <= d <= 31):
         raise ValueError(f"วันที่ไม่สมเหตุสมผล: {asof_raw!r}")
-    datecom = f"{d} {THAI_MONTHS[mo]} {y} {hm}"
+    datecom = f"{d} {THAI_MONTHS[mo]} {y} เวลา {hm} น."
     asof = f"{d:02d}/{mo:02d}/{y - 543} {hm}"
     return datecom, asof
 

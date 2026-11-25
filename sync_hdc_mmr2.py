@@ -151,12 +151,18 @@ def fetch_hdc_data(year):
         print(f"⚠️  HDC API ปี {year} ไม่มี rows")
         return '', [], 'not_published'
 
-    datecom = rows[0].get('datecom')
+    datecom_raw = rows[0].get('datecom')
     inner_data = rows[0].get('data') or []
 
-    if not datecom or not inner_data:
-        print(f"⚠️  ปีงบประมาณ {year} ยังไม่มีข้อมูลในระบบ HDC (datecom={datecom!r})")
+    if not datecom_raw or not inner_data:
+        print(f"⚠️  ปีงบประมาณ {year} ยังไม่มีข้อมูลในระบบ HDC (datecom={datecom_raw!r})")
         return '', [], 'not_published'
+
+    if 'เวลา' not in datecom_raw and ':' not in datecom_raw:
+        now_bkk = datetime.now(BANGKOK)
+        datecom = f"{datecom_raw} เวลา {now_bkk.strftime('%H:%M')} น."
+    else:
+        datecom = datecom_raw
 
     has_mmr2 = any(num(item.get(f'mmr2q{q}')) is not None
                    for item in inner_data for q in QUARTERS)

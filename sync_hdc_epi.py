@@ -174,10 +174,15 @@ def fetch_one(report, year):
     rows = data_json.get('rows') or []
     if not rows:
         return '', [], 'not_published'
-    datecom = rows[0].get('datecom')
+    datecom_raw = rows[0].get('datecom')
     inner = rows[0].get('data') or []
-    if not datecom or not inner:
+    if not datecom_raw or not inner:
         return '', [], 'not_published'
+    if 'เวลา' not in datecom_raw and ':' not in datecom_raw:
+        now_bkk = datetime.now(BANGKOK)
+        datecom = f"{datecom_raw} เวลา {now_bkk.strftime('%H:%M')} น."
+    else:
+        datecom = datecom_raw
     return datecom, inner, None
 
 
