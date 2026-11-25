@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dashboard ความครอบคลุมวัคซีน MMR2</title>
+
+    <!-- PWA & Mobile Web App Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="วัคซีนกาฬสินธุ์">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" href="icon-192.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1025,6 +1035,117 @@
             .page-btn { padding: 4px 8px !important; font-size: 11px !important; min-width: 28px !important; }
         }
 
+    
+        /* Table Search Bar & Floating Back to Top Button */
+        .table-search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 360px;
+            min-width: 200px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            font-size: 14px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 9px 34px 9px 36px;
+            border-radius: 12px;
+            border: 1.5px solid #cbd5e1;
+            background: #f8fafc;
+            font-family: 'Prompt', sans-serif;
+            font-size: 13px;
+            color: #1e293b;
+            outline: none;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .search-input-wrapper input:focus {
+            background: #ffffff;
+            border-color: var(--t-dom, #4338ca);
+            box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+        }
+        .search-clear-btn {
+            position: absolute;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: none;
+            background: #cbd5e1;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.15s ease;
+        }
+        .search-clear-btn:hover {
+            background: #94a3b8;
+            color: #ffffff;
+        }
+        .search-result-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        /* Floating Back to Top Button */
+        .btn-back-to-top {
+            position: fixed;
+            bottom: 22px;
+            right: 18px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--t-dom, #4338ca) 0%, var(--t-dom2, #6d28d9) 100%);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.28);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(14px) scale(0.9);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .btn-back-to-top:hover {
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.38);
+        }
+        @media (max-width: 768px) {
+            .search-input-wrapper {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+        }
+
     </style></head>
 <body>
 
@@ -1174,6 +1295,16 @@
     </div>
 
     <div class="table-container">
+
+        <div class="table-search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="tableSearchInput" placeholder="พิมพ์ค้นหาชื่อ รพ.สต., หน่วยบริการ หรืออำเภอ..." oninput="onSearchInput(this.value)" autocomplete="off">
+                <button id="searchClearBtn" class="search-clear-btn" onclick="clearSearch()" style="display:none;" title="ล้างคำค้นหา" type="button">✕</button>
+            </div>
+            <div id="searchResultCount" class="search-result-count"></div>
+        </div>
+
         <div class="table-wrapper">
             <table id="dataTable">
                 <thead>
@@ -1881,6 +2012,12 @@
             const matchDistrict = (selectedDistrict === 'ทั้งหมด' || item.district === selectedDistrict);
             const matchAgency = (selectedAgency === 'ทั้งหมด' || item.agency === selectedAgency);
             if (!matchDistrict || !matchAgency) return false;
+            if (searchKeyword) {
+                const kw = searchKeyword.toLowerCase();
+                const matchUnit = item.unit && item.unit.toLowerCase().includes(kw);
+                const matchDist = item.district && item.district.toLowerCase().includes(kw);
+                if (!matchUnit && !matchDist) return false;
+            }
             return currentPerformanceFilter === 'all' ? true : matchesPerformance(item);
         });
     }
@@ -2536,6 +2673,51 @@
         renderDashboard(false); 
     };
 
+    
+    let searchKeyword = '';
+
+    window.onSearchInput = function(val) {
+        searchKeyword = (val || '').trim();
+        const clearBtn = document.getElementById('searchClearBtn');
+        if (clearBtn) clearBtn.style.display = searchKeyword ? 'flex' : 'none';
+        renderDashboard(true);
+        updateSearchResultCount();
+    };
+
+    window.clearSearch = function() {
+        const input = document.getElementById('tableSearchInput');
+        if (input) input.value = '';
+        searchKeyword = '';
+        const clearBtn = document.getElementById('searchClearBtn');
+        if (clearBtn) clearBtn.style.display = 'none';
+        renderDashboard(true);
+        updateSearchResultCount();
+    };
+
+    function updateSearchResultCount() {
+        const el = document.getElementById('searchResultCount');
+        if (!el) return;
+        if (searchKeyword) {
+            const count = getFilteredData().length;
+            el.innerText = `พบ ${count.toLocaleString()} แห่ง`;
+        } else {
+            el.innerText = '';
+        }
+    }
+
+
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('btnBackToTop');
+        if (btn) {
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        }
+    }, { passive: true });
+
+
     function renderDashboard(resetPage = true) {
         if(resetPage) currentPage = 1;
 
@@ -2636,5 +2818,7 @@
     const initQuarters = availableQuarters(selectedYear);
     selectedQuarter = initQuarters.length >= 2 ? 'all' : (initQuarters[0] || 'all');
     refreshAll();
-</script></body>
+</script>
+<button id="btnBackToTop" class="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="กลับสู่ด้านบน" title="กลับสู่ด้านบน" type="button">▲</button>
+</body>
 </html>

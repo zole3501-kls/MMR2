@@ -1,0 +1,24 @@
+{
+  "name": "แดชบอร์ดความครอบคลุมวัคซีน จังหวัดกาฬสินธุ์",
+  "short_name": "วัคซีนกาฬสินธุ์",
+  "description": "ระบบติดตามความครอบคลุมการฉีดวัคซีน จังหวัดกาฬสินธุ์ (MMR2, PCV, EPI, ไข้หวัดใหญ่)",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#eef0fa",
+  "theme_color": "#1e1b4b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
