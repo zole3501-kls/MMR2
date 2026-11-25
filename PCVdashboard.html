@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dashboard ความครอบคลุมวัคซีน PCV 2 และ 4 เดือน</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -446,165 +446,241 @@
 
         
         
-        /* ===== ยกระดับการออกแบบบนมือถือระดับพรีเมียม (Premium App-Like Mobile UI) ===== */
-        html, body {
+        
+        /* ===== Zero Horizontal Scroll Mobile UI (100% กว้างพอดีจอ ไม่ต้องเลื่อนขวา) ===== */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+        }
+        html {
             overflow-x: hidden !important;
+            width: 100% !important;
             max-width: 100vw !important;
+        }
+        body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            position: relative !important;
+            touch-action: pan-y !important;
+            margin: 0 !important;
+            padding: 8px !important;
         }
         .dashboard-container {
             width: 100% !important;
-            max-width: 1280px !important;
-            box-sizing: border-box !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
             overflow-x: hidden !important;
+            box-sizing: border-box !important;
         }
 
         @media (max-width: 991px) {
-            .district-grid { grid-template-columns: repeat(3, 1fr) !important; }
-            .agency-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            .district-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+            .agency-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
             .charts-container { grid-template-columns: 1fr !important; }
         }
 
         @media (max-width: 768px) {
-            body { padding: 8px !important; }
-            .dashboard-container { padding: 0 !important; }
-
-            /* 1. Header สไตล์แอปพลิเคชัน */
+            /* 1. Header */
             .header {
-                padding: 16px 14px !important;
-                border-radius: 18px !important;
+                padding: 14px 12px !important;
+                border-radius: 16px !important;
                 flex-direction: column !important;
                 align-items: stretch !important;
-                gap: 12px !important;
-                margin-bottom: 12px !important;
+                gap: 10px !important;
+                margin-bottom: 10px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
             .header h1 {
-                font-size: 18px !important;
+                font-size: 17px !important;
                 line-height: 1.35 !important;
                 gap: 8px !important;
+                word-break: break-word !important;
             }
             .header-icon {
-                width: 38px !important;
-                height: 38px !important;
-                font-size: 20px !important;
-                border-radius: 12px !important;
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 18px !important;
+                border-radius: 10px !important;
             }
-            .header p { font-size: 12px !important; opacity: 0.9 !important; }
+            .header p { font-size: 11.5px !important; opacity: 0.9 !important; line-height: 1.4 !important; }
             .btn-download {
                 width: 100% !important;
                 justify-content: center !important;
-                padding: 10px 14px !important;
-                font-size: 13.5px !important;
-                border-radius: 12px !important;
+                padding: 10px 12px !important;
+                font-size: 13px !important;
+                border-radius: 10px !important;
             }
 
-            /* 2. Scope Bar (เมนูชนิดวัคซีน + ปี + ไตรมาส) */
+            /* 2. Scope Bar (เมนูชนิดวัคซีน + ปี + ไตรมาส): แสดงครบทุกปุ่ม ไม่ต้องเลื่อนขวา */
             .scope-bar {
-                padding: 14px 12px !important;
-                border-radius: 18px !important;
-                gap: 10px !important;
-                margin-bottom: 14px !important;
+                padding: 12px 10px !important;
+                border-radius: 16px !important;
+                gap: 8px !important;
+                margin-bottom: 12px !important;
                 background: #ffffff !important;
                 border: 1.5px solid #dcdff2 !important;
-                box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+                box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05) !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
-            .scope-group { width: 100% !important; gap: 6px !important; }
+            .scope-group {
+                width: 100% !important;
+                gap: 6px !important;
+                max-width: 100% !important;
+            }
             .scope-group + .scope-group {
                 border-left: none !important;
                 padding-left: 0 !important;
                 border-top: 1px dashed #cbd5e1 !important;
-                padding-top: 10px !important;
+                padding-top: 8px !important;
                 margin-top: 2px !important;
             }
-            .scope-label { font-size: 11.5px !important; padding: 3px 8px !important; font-weight: 700 !important; }
+            .scope-label { font-size: 11px !important; padding: 2px 6px !important; font-weight: 700 !important; }
+            
+            /* ชนิดวัคซีน 4 ปุ่ม: ตาราง 2x2 เต็มความกว้าง */
             .scope-group.nav-group .scope-pills {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 6px !important;
                 width: 100% !important;
             }
             .scope-group.nav-group .scope-btn {
                 justify-content: center !important;
-                padding: 8px 10px !important;
-                font-size: 12.5px !important;
+                padding: 7px 8px !important;
+                font-size: 12px !important;
             }
-            .scope-pills {
-                display: flex !important;
-                overflow-x: auto !important;
-                flex-wrap: nowrap !important;
+
+            /* ปีงบประมาณ 3 ปุ่ม: 3 คอลัมน์แถวเดียวพอดีเป๊ะ */
+            #yearPills {
+                display: grid !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
                 gap: 6px !important;
                 width: 100% !important;
-                padding-bottom: 3px !important;
-                -webkit-overflow-scrolling: touch !important;
-                scrollbar-width: none !important;
             }
-            .scope-pills::-webkit-scrollbar { display: none !important; }
-            .scope-btn {
-                flex-shrink: 0 !important;
-                padding: 6px 14px !important;
+            #yearPills .scope-btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 6px 4px !important;
+                font-size: 11.5px !important;
+                text-align: center !important;
+            }
+
+            /* ไตรมาส 5 ปุ่ม: ทั้งปี (เต็มความกว้าง) + 4 ไตรมาส (4 คอลัมน์) ไม่ล้นจอ */
+            #quarterPills {
+                display: grid !important;
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+                width: 100% !important;
+            }
+            #quarterPills .scope-btn[data-quarter="all"] {
+                grid-column: 1 / -1 !important;
+                padding: 6px 10px !important;
                 font-size: 12px !important;
+                font-weight: 700 !important;
+                justify-content: center !important;
+            }
+            #quarterPills .scope-btn:not([data-quarter="all"]) {
+                padding: 6px 2px !important;
+                font-size: 11px !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            /* ตรวจราชการ 2 ปุ่ม: 2 คอลัมน์ 50% / 50% */
+            #inspectionPills {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 6px !important;
+                width: 100% !important;
+            }
+            #inspectionPills .scope-btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 6px 6px !important;
+                font-size: 11px !important;
+            }
+
+            /* เข็มวัคซีน (PCV 2 เข็ม / EPI 22 เข็ม): ปรับเป็น grid สวยงาม ไม่ล้นจอ */
+            .scope-pills {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 5px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: visible !important;
+            }
+            .scope-btn {
+                padding: 6px 10px !important;
+                font-size: 11.5px !important;
                 border-radius: 999px !important;
                 white-space: nowrap !important;
+                box-sizing: border-box !important;
             }
 
             /* 3. ===== การ์ด KPI: Executive Hero Summary ===== */
             .kpi-container {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-                margin-bottom: 14px !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 8px !important;
+                margin-bottom: 12px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
-            /* Hero Card: ร้อยละความครอบคลุม (เด่นสะดุดตา เต็มความกว้าง 2 คอลัมน์) */
+            /* Hero Card: ร้อยละความครอบคลุม (เด่นสะดุดตา เต็มความกว้าง) */
             .kpi-card.bg-yellow, .kpi-card.kpi-hero {
                 grid-column: 1 / -1 !important;
                 order: -1 !important;
-                padding: 18px 16px !important;
-                border-radius: 20px !important;
+                padding: 16px 14px !important;
+                border-radius: 18px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
                 background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%) !important;
                 border: 2px solid #f59e0b !important;
-                box-shadow: 0 10px 25px -8px rgba(245, 158, 11, 0.35) !important;
+                box-shadow: 0 8px 20px -6px rgba(245, 158, 11, 0.3) !important;
             }
-            .kpi-card.bg-yellow .kpi-icon, .kpi-card.kpi-hero .kpi-icon {
-                font-size: 24px !important;
+            .kpi-card.bg-yellow .kpi-icon {
+                font-size: 22px !important;
                 margin-bottom: 2px !important;
             }
-            .kpi-card.bg-yellow .kpi-title, .kpi-card.kpi-hero .kpi-title {
-                font-size: 13.5px !important;
+            .kpi-card.bg-yellow .kpi-title {
+                font-size: 13px !important;
                 font-weight: 700 !important;
                 color: #92400e !important;
-                letter-spacing: 0.2px !important;
             }
-            .kpi-card.bg-yellow .kpi-value, .kpi-card.kpi-hero .kpi-value {
-                font-size: 38px !important;
+            .kpi-card.bg-yellow .kpi-value {
+                font-size: 34px !important;
                 font-weight: 800 !important;
                 color: #78350f !important;
                 line-height: 1.1 !important;
                 margin: 4px 0 !important;
             }
-            .kpi-card.bg-yellow .kpi-sub, .kpi-card.kpi-hero .kpi-sub {
-                font-size: 11.5px !important;
+            .kpi-card.bg-yellow .kpi-sub {
+                font-size: 11px !important;
                 color: #b45309 !important;
                 font-weight: 600 !important;
             }
 
-            /* Companion Cards: เป้าหมาย & ฉีดแล้ว (2 คอลัมน์ สีสันชัดเจน) */
+            /* Companion Cards: เป้าหมาย & ฉีดแล้ว (2 คอลัมน์) */
             .kpi-card.bg-blue, .kpi-card.bg-green, .kpi-card.bg-amber {
-                padding: 14px 12px !important;
-                border-radius: 16px !important;
+                padding: 12px 10px !important;
+                border-radius: 14px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                min-height: 98px !important;
+                min-height: 90px !important;
                 border-width: 1.5px !important;
+                box-sizing: border-box !important;
             }
             .kpi-card.bg-blue {
                 background: linear-gradient(135deg, #f0f7ff 0%, #dbeafe 100%) !important;
                 border-color: #93c5fd !important;
-                box-shadow: 0 6px 16px -6px rgba(59, 130, 246, 0.25) !important;
+                box-shadow: 0 4px 14px -4px rgba(59, 130, 246, 0.2) !important;
             }
             .kpi-card.bg-blue .kpi-title { color: #1e40af !important; }
             .kpi-card.bg-blue .kpi-value { color: #1e3a8a !important; }
@@ -612,7 +688,7 @@
             .kpi-card.bg-green {
                 background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%) !important;
                 border-color: #86efac !important;
-                box-shadow: 0 6px 16px -6px rgba(16, 185, 129, 0.25) !important;
+                box-shadow: 0 4px 14px -4px rgba(16, 185, 129, 0.2) !important;
             }
             .kpi-card.bg-green .kpi-title { color: #065f46 !important; }
             .kpi-card.bg-green .kpi-value { color: #064e3b !important; }
@@ -620,154 +696,157 @@
             .kpi-card.bg-amber {
                 background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
                 border-color: #fde68a !important;
-                box-shadow: 0 6px 16px -6px rgba(245, 158, 11, 0.25) !important;
+                box-shadow: 0 4px 14px -4px rgba(245, 158, 11, 0.2) !important;
             }
             .kpi-card.bg-amber .kpi-title { color: #92400e !important; }
             .kpi-card.bg-amber .kpi-value { color: #78350f !important; }
 
             .kpi-card .kpi-icon {
-                font-size: 22px !important;
+                font-size: 20px !important;
                 margin-bottom: 2px !important;
             }
             .kpi-card .kpi-title {
-                font-size: 12px !important;
+                font-size: 11.5px !important;
                 font-weight: 700 !important;
                 line-height: 1.25 !important;
                 text-align: center !important;
             }
             .kpi-card .kpi-value {
-                font-size: 24px !important;
+                font-size: 22px !important;
                 font-weight: 800 !important;
-                margin-top: 3px !important;
+                margin-top: 2px !important;
                 line-height: 1.15 !important;
             }
 
             /* 4. ===== Section กรองพื้นที่ (สังกัด + 18 อำเภอ) ===== */
             .grid-container {
-                padding: 16px 12px !important;
-                border-radius: 20px !important;
-                margin-bottom: 14px !important;
+                padding: 14px 10px !important;
+                border-radius: 18px !important;
+                margin-bottom: 12px !important;
                 background: #ffffff !important;
                 border: 1.5px solid #cbd5e1 !important;
-                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+                box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05) !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
             .grid-title {
-                font-size: 13.5px !important;
+                font-size: 13px !important;
                 font-weight: 700 !important;
                 color: #0f172a !important;
-                margin-bottom: 10px !important;
+                margin-bottom: 8px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: flex-start !important;
-                gap: 6px !important;
+                gap: 4px !important;
             }
             .grid-title > span:last-child {
-                font-size: 11px !important;
+                font-size: 10.5px !important;
                 flex-wrap: wrap !important;
                 gap: 4px !important;
             }
 
-            /* สังกัดหน่วยบริการ: Segmented Switch 3 แท็บแนวนอน */
+            /* สังกัดหน่วยบริการ: Segmented Switch 3 แท็บแถวเดียว */
             .agency-grid {
                 display: grid !important;
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 6px !important;
-                margin-bottom: 14px !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+                margin-bottom: 12px !important;
+                width: 100% !important;
             }
             .agency-card {
-                padding: 8px 4px !important;
-                border-radius: 10px !important;
-                font-size: 12px !important;
+                padding: 7px 2px !important;
+                border-radius: 8px !important;
+                font-size: 11.5px !important;
                 font-weight: 600 !important;
                 text-align: center !important;
                 justify-content: center !important;
-                min-height: 38px !important;
+                min-height: 36px !important;
                 background: #f1f5f9 !important;
                 border: 1.5px solid #cbd5e1 !important;
                 color: #334155 !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
+                box-sizing: border-box !important;
             }
             .agency-card.active {
                 background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
                 border-color: transparent !important;
                 color: #ffffff !important;
-                box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3) !important;
+                box-shadow: 0 3px 10px rgba(67, 56, 202, 0.3) !important;
             }
 
-            /* ===== District Cards: Redesigned Mobile Tiles ===== */
+            /* ภาพรวมทั้งจังหวัด: Banner เต็มความกว้าง */
             .district-grid-overview {
-                margin-bottom: 12px !important;
+                margin-bottom: 10px !important;
                 width: 100% !important;
             }
-            /* การ์ดภาพรวมทั้งจังหวัด: Banner ใหญ่ พรีเมียม */
             .district-grid-overview .district-card {
                 width: 100% !important;
                 max-width: 100% !important;
-                height: 56px !important;
-                border-radius: 16px !important;
-                padding: 10px 16px !important;
+                height: 52px !important;
+                border-radius: 14px !important;
+                padding: 8px 14px !important;
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
                 align-items: center !important;
                 background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%) !important;
                 border: 2px solid #94a3b8 !important;
-                box-shadow: 0 3px 8px rgba(15, 23, 42, 0.05) !important;
+                box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
                 box-sizing: border-box !important;
             }
             .district-grid-overview .district-card .dc-name {
-                font-size: 14.5px !important;
+                font-size: 14px !important;
                 font-weight: 700 !important;
                 color: #0f172a !important;
                 flex-grow: 1 !important;
                 text-align: left !important;
             }
             .district-grid-overview .district-card .dc-pct {
-                font-size: 14px !important;
+                font-size: 13.5px !important;
                 font-weight: 800 !important;
-                padding: 5px 12px !important;
+                padding: 4px 10px !important;
                 border-radius: 8px !important;
             }
             .district-grid-overview .district-card.active {
                 background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
                 border-color: transparent !important;
-                box-shadow: 0 8px 20px -4px var(--t-glow, rgba(67, 56, 202, 0.5)) !important;
+                box-shadow: 0 6px 16px -4px var(--t-glow, rgba(67, 56, 202, 0.5)) !important;
             }
-            .district-grid-overview .district-card.active .dc-name {
-                color: #ffffff !important;
-            }
+            .district-grid-overview .district-card.active .dc-name { color: #ffffff !important; }
             .district-grid-overview .district-card.active .dc-pct {
                 background: #f59e0b !important;
                 color: #1e1b4b !important;
                 border: none !important;
             }
 
-            /* การ์ดราย 18 อำเภอ: ตาราง 2 คอลัมน์ แบบ App Stat Cards */
+            /* การ์ดราย 18 อำเภอ: ตาราง 2 คอลัมน์ ไม่ล้นจอเด็ดขาด */
             .district-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 7px !important;
                 margin-bottom: 6px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
             .district-card {
-                height: 70px !important;
-                padding: 10px 12px !important;
-                border-radius: 14px !important;
+                height: 66px !important;
+                padding: 8px 10px !important;
+                border-radius: 12px !important;
                 border: 1.5px solid #cbd5e1 !important;
                 background: #ffffff !important;
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: space-between !important;
                 align-items: stretch !important;
-                box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+                box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
                 box-sizing: border-box !important;
-                transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+                min-width: 0 !important;
             }
-            /* แถวบน: ชื่ออำเภอ ตัวหนา คมชัด 13.5px */
             .district-card .dc-name {
-                font-size: 13.5px !important;
+                font-size: 13px !important;
                 font-weight: 700 !important;
                 color: #0f172a !important;
                 white-space: nowrap !important;
@@ -776,83 +855,86 @@
                 text-align: left !important;
                 line-height: 1.2 !important;
             }
-            /* แถวล่าง: ตัวเลขร้อยละพร้อม Badge ชัดเจน */
             .district-card .dc-pct {
-                font-size: 12.5px !important;
+                font-size: 12px !important;
                 font-weight: 800 !important;
-                padding: 3px 8px !important;
+                padding: 2.5px 7px !important;
                 border-radius: 6px !important;
                 align-self: flex-end !important;
                 margin-top: auto !important;
                 line-height: 1.2 !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
             }
-            /* เมื่อการ์ดอำเภอถูกเลือก (Active State) */
             .district-card.active {
                 background: linear-gradient(135deg, var(--t-deep, #1e1b4b) 0%, var(--t-dom, #4338ca) 100%) !important;
                 border-color: transparent !important;
-                box-shadow: 0 8px 18px -4px var(--t-glow, rgba(67, 56, 202, 0.45)) !important;
+                box-shadow: 0 6px 14px -4px var(--t-glow, rgba(67, 56, 202, 0.45)) !important;
                 transform: scale(1.02) !important;
             }
-            .district-card.active .dc-name {
-                color: #ffffff !important;
-                font-weight: 700 !important;
-            }
+            .district-card.active .dc-name { color: #ffffff !important; font-weight: 700 !important; }
             .district-card.active .dc-pct {
                 background: rgba(255, 255, 255, 0.25) !important;
                 color: #ffffff !important;
                 border: 1px solid rgba(255, 255, 255, 0.35) !important;
             }
 
-            /* 5. Filter Buttons: แถบเลื่อนแนวนอน Modern App Pills */
+            /* 5. Filter Buttons: 6 ปุ่มจัดเป็น 3 คอลัมน์ x 2 แถว ครบจบในจอ ไม่ต้องเลื่อนขวา! */
             .filter-section {
                 padding: 12px 10px !important;
                 border-radius: 16px !important;
-                margin-bottom: 14px !important;
+                margin-bottom: 12px !important;
                 background: #ffffff !important;
-                border: 1px solid #e2e8f0 !important;
+                border: 1.5px solid #cbd5e1 !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
-            .filter-section-title { font-size: 12.5px !important; margin-bottom: 8px !important; font-weight: 700 !important; }
+            .filter-section-title { font-size: 12px !important; margin-bottom: 8px !important; font-weight: 700 !important; }
             .filter-buttons {
-                display: flex !important;
-                overflow-x: auto !important;
-                flex-wrap: nowrap !important;
-                gap: 6px !important;
-                padding-bottom: 4px !important;
-                -webkit-overflow-scrolling: touch !important;
-                scrollbar-width: none !important;
+                display: grid !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 5px !important;
+                width: 100% !important;
+                overflow: visible !important;
             }
-            .filter-buttons::-webkit-scrollbar { display: none !important; }
             .filter-btn {
-                flex-shrink: 0 !important;
-                padding: 6px 14px !important;
-                border-radius: 999px !important;
-                font-size: 12px !important;
+                padding: 6px 4px !important;
+                border-radius: 8px !important;
+                font-size: 11px !important;
+                justify-content: center !important;
+                text-align: center !important;
                 white-space: nowrap !important;
+                gap: 4px !important;
+                box-sizing: border-box !important;
+                min-width: 0 !important;
             }
+            .filter-btn .filter-count { font-size: 9.5px !important; padding: 1px 4px !important; }
 
-            /* 6. Charts & Insights */
-            .charts-container {
-                grid-template-columns: 1fr !important;
-                gap: 12px !important;
-                margin-bottom: 14px !important;
-            }
-            .chart-card {
-                padding: 14px 12px !important;
-                border-radius: 16px !important;
-                height: auto !important;
-                min-height: 320px !important;
-            }
-            .canvas-container { height: 260px !important; }
-            .insights-container {
+            /* 6. Charts & Trends */
+            .trend-container, .charts-container {
                 grid-template-columns: 1fr !important;
                 gap: 10px !important;
-                margin-bottom: 14px !important;
+                margin-bottom: 12px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
-            .insight-card { padding: 14px !important; border-radius: 16px !important; }
-            .pill { padding: 5px 10px !important; font-size: 12px !important; }
+            .chart-card, .trend-card {
+                padding: 12px 10px !important;
+                border-radius: 16px !important;
+                height: auto !important;
+                min-height: 300px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .canvas-container { height: 250px !important; width: 100% !important; }
+            .insights-container {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+                margin-bottom: 12px !important;
+                width: 100% !important;
+            }
+            .insight-card { padding: 12px !important; border-radius: 14px !important; width: 100% !important; }
 
-            /* 7. Table Container: ป้องกันการล้นจอเด็ดขาด */
+            /* 7. Table: กว้างพอดี 100% ไม่ล้นจอเด็ดขาด */
             .table-container {
                 border-radius: 16px !important;
                 margin-bottom: 20px !important;
@@ -860,13 +942,38 @@
                 max-width: 100% !important;
                 overflow: hidden !important;
                 box-sizing: border-box !important;
+                padding: 10px 8px !important;
+                border: 1.5px solid #cbd5e1 !important;
             }
             .table-wrapper {
                 width: 100% !important;
                 max-width: 100% !important;
                 overflow-x: auto !important;
                 -webkit-overflow-scrolling: touch !important;
+                box-sizing: border-box !important;
             }
+            table {
+                min-width: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                font-size: 11.5px !important;
+                border-collapse: collapse !important;
+            }
+            th, td {
+                padding: 6px 3px !important;
+                word-break: break-word !important;
+            }
+            th:nth-child(3), td:nth-child(3) { display: none !important; } /* ซ่อนคอลัมน์สังกัดบนมือถือ */
+            
+            .pagination-container {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 4px !important;
+                padding: 8px 4px !important;
+                font-size: 11px !important;
+            }
+            .page-btn { padding: 4px 8px !important; font-size: 11px !important; min-width: 28px !important; }
         }
 
     </style></head>
